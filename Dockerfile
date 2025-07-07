@@ -13,9 +13,6 @@ RUN npm install
 # Копируем исходный код
 COPY . .
 
-# Собираем TypeScript (если нужно)
-RUN npx tsc
-
 # Открываем порт
 EXPOSE 3000
 
