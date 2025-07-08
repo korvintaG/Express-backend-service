@@ -17,8 +17,8 @@
 
 1. **Клонируйте репозиторий:**
    ```bash
-   git clone <URL-ВАШЕГО-РЕПОЗИТОРИЯ>
-   cd <имя-папки>
+   git clone  git clone https://github.com/korvintaG/Express-backend-service.git 
+   cd Express-backend-service
    ```
 2. **Установите зависимости:**
    ```bash
