@@ -48,6 +48,17 @@
       }
     },
     {
+      "name": "Refresh Access Token (via Cookie)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "http://localhost:3000/auth/refresh", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["auth", "refresh"] },
+        "description": "Обновляет accessToken используя refreshToken из httpOnly cookie. После логина refreshToken автоматически устанавливается в cookie. В Postman используйте 'Send cookies' и не передавайте refreshToken в теле запроса."
+      }
+    },
+    {
       "name": "Get User by ID",
       "request": {
         "method": "GET",

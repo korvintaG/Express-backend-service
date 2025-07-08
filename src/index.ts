@@ -9,6 +9,6 @@ AppDataSource.initialize()
       console.log(`Server started on port ${PORT}`);
     });
   })
-  .catch((err) => {
+  .catch((err: Error) => {
     console.error('DB connection error:', err);
   });

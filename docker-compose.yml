@@ -1,0 +1,50 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:17.4
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test
+    networks:
+      - internal
+    restart: unless-stopped
+
+  backend:
+    image: backend
+    container_name: backend
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_NAME: test
+      JWT_ACCESS_SECRET: access_secret
+      JWT_REFRESH_SECRET: refresh_secret
+    build: 
+      context: . # директория сборки (контекст)
+      dockerfile: Dockerfile # Имя файла описания контейнера (Dockerfile)
+    networks:
+      - internal
+      - internet
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  pgdata: 
+
+networks:
+  internal:
+    name: internal
+    driver: bridge
+    internal: true
+  internet:
+    name: internet
+    driver: bridge

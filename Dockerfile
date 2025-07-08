@@ -1,20 +1,15 @@
-# Используем официальный Node.js образ
-FROM node:18-alpine
-
-# Рабочая директория
+FROM node:20-alpine AS builder
 WORKDIR /app
+COPY package*.json /app/
+RUN npm i
+COPY . /app/
+RUN npm run build
 
-# Копируем package.json и package-lock.json
+FROM node:20-alpine
+RUN apk add mc
+WORKDIR /usr/src/app
 COPY package*.json ./
-
-# Устанавливаем зависимости
-RUN npm install
-
-# Копируем исходный код
-COPY . .
-
-# Открываем порт
+RUN npm i --omit=dev
+COPY --from=builder /app/build ./build
 EXPOSE 3000
-
-# Запуск приложения
-CMD ["npx", "ts-node", "src/index.ts"] 
+CMD [ "sh", "-c", "node ./build/index.js" ]
