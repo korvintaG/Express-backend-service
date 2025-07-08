@@ -49,4 +49,9 @@ export class AuthController {
       res.status(401).json({ message: e.message });
     }
   }
+
+  static async logout(req: Request, res: Response) {
+    res.clearCookie(REFRESH_COOKIE_NAME, REFRESH_COOKIE_OPTIONS);
+    res.json({ message: 'Logged out' });
+  }
 } 

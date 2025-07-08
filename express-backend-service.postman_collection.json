@@ -99,6 +99,17 @@
         ],
         "url": { "raw": "http://localhost:3000/users/{{userId}}/promote", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["users", "{{userId}}", "promote"] }
       }
+    },
+    {
+      "name": "Logout (удалить refreshToken из cookie)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "http://localhost:3000/auth/logout", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["auth", "logout"] },
+        "description": "Удаляет refreshToken из httpOnly cookie. Используйте после логина или refresh."
+      }
     }
   ],
   "variable": [

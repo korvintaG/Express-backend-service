@@ -78,6 +78,21 @@ paths:
                     type: string
         '401':
           description: Нет refreshToken или он невалиден
+  /auth/logout:
+    post:
+      tags: [Auth]
+      summary: Выход пользователя (удаляет refreshToken из cookie)
+      responses:
+        '200':
+          description: RefreshToken удалён из cookie
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Logged out
   /users/{id}:
     get:
       tags: [Users]
