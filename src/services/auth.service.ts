@@ -24,8 +24,9 @@ export class AuthService {
       isActive: true,
     });
     await this.userRepo.save(user);
-    delete (user as any).password;
-    return user;
+    // Удаляем поле password типобезопасно
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 
   static async login(dto: LoginDto) {

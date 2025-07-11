@@ -6,9 +6,9 @@ export class UserController {
   static async getById(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const user = await UserService.getById(id, (req as any).user);
+      const user = await UserService.getById(id, req.user!);
       res.json(user);
-    } catch (e: any) {
+    } catch (e) {
       res.status(403).json({ message: e.message });
     }
   }
@@ -17,7 +17,7 @@ export class UserController {
     try {
       const users = await UserService.getAll();
       res.json(users);
-    } catch (e: any) {
+    } catch (e) {
       res.status(403).json({ message: e.message });
     }
   }
@@ -25,9 +25,9 @@ export class UserController {
   static async block(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const user = await UserService.block(id, (req as any).user);
+      const user = await UserService.block(id, req.user!);
       res.json(user);
-    } catch (e: any) {
+    } catch (e) {
       res.status(403).json({ message: e.message });
     }
   }
@@ -35,9 +35,9 @@ export class UserController {
   static async promote(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const user = await UserService.promote(id, (req as any).user);
+      const user = await UserService.promote(id, req.user!);
       res.json(user);
-    } catch (e: any) {
+    } catch (e) {
       res.status(403).json({ message: e.message });
     }
   }

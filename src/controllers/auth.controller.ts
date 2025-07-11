@@ -18,7 +18,7 @@ export class AuthController {
       const dto: RegisterDto = req.body;
       const user = await AuthService.register(dto);
       res.status(201).json(user);
-    } catch (e: any) {
+    } catch (e) {
       console.error('Register error:', e);
       res.status(400).json({ message: e.message });
     }
@@ -30,7 +30,7 @@ export class AuthController {
       const { accessToken, refreshToken, id } = await AuthService.login(dto);
       res.cookie(REFRESH_COOKIE_NAME, refreshToken, REFRESH_COOKIE_OPTIONS);
       res.json({ accessToken, id });
-    } catch (e: any) {
+    } catch (e) {
       res.status(401).json({ message: e.message });
     }
   }
@@ -45,7 +45,7 @@ export class AuthController {
       const tokens = await AuthService.refresh(refreshToken);
       res.cookie(REFRESH_COOKIE_NAME, tokens.refreshToken, REFRESH_COOKIE_OPTIONS);
       res.json({ accessToken: tokens.accessToken });
-    } catch (e: any) {
+    } catch (e) {
       res.status(401).json({ message: e.message });
     }
   }

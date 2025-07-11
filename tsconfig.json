@@ -1,4 +1,7 @@
 {
+   "ts-node": {
+      "files": true
+   },
     "compilerOptions": {
       "lib": [
          "es2021"
@@ -10,8 +13,9 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "typeRoots": ["./node_modules/@types", "src/@types"]
    },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "build", "**/*.test.ts", "**/*.spec.ts", "**/__tests__/**" ]
+  "exclude": ["node_modules", "dist", "build", "**/*.test.ts", "**/*.spec.ts", "**/__tests__/**"]
 }

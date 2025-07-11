@@ -32,7 +32,7 @@ describe('AuthService', () => {
     expect(result.fullName).toBe(dto.fullName);
     expect(result.email).toBe(dto.email);
     expect(result.role).toBe(UserRole.USER);
-    expect(result.password).toBeUndefined();
+    expect(result).not.toHaveProperty('password');
   });
 
   it('should not register with existing email', async () => {
